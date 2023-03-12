@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Operations</title>
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Operations</h1>
+    <img id="image" src="image.jpg" />
+    <br />
+    <button onclick="makeRed()">Make Reddish</button>
+    <button onclick="makeBlue()">Make Blueish</button>
+    <button onclick="makeGreen()">Make Greenish</button>
+    <button onclick="duplicate()">Duplicate</button>
+    <button onclick="increaseBrightness()">Increase Brightness</button>
+    <button onclick="reduceResolution()">Reduce Resolution</button>
+    <button onclick="makeGray()">Make Gray Scale</button>
+    <button onclick="createThumbnail()">Create Thumbnail</button>
+    <script>
+      function makeRed() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i] <= data[i + 1] + data[i + 2]) {
+            data[i] = data[i + 1] + data[i + 2];
+          } else {
+            data[i] = 255;
+          }
+        }
+        ctx.putImageData(imageData, 0, 0);
+        img.src = canvas.toDataURL();
+      }
+      function makeBlue() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i + 2] <= data[i] + data[i + 1]) {
+            data[i + 2] = data[i] + data[i + 1];
+          } else {
+            data[i + 2] = 255;
+          }
+        }
+        ctx.putImageData(imageData, 0, 0);
+        img.src = canvas.toDataURL();
+      }
+      function makeGreen() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          if (data[i + 1] <= data[i] + data[i + 2]) {
+            data[i + 1] = data[i] + data[i + 2];
+          } else {
+            data[i + 1] = 255;
+          }
+        }
+        ctx.putImageData(imageData, 0, 0);
+        img.src = canvas.toDataURL();
+      }
+      function duplicate() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var img2 = new Image();
+        img2.src = canvas.toDataURL();
+        document.body.appendChild(img2);
+      }
+      function increaseBrightness() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          data[i] += 50;
+          data[i + 1] += 50;
+          data[i + 2] += 50;
+        }
+        ctx.putImageData(imageData, 0, 0);
+        img.src = canvas.toDataURL();
+      }
+      function reduceResolution() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width / 2;
+        canvas.height = img.height / 2;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        img.src = canvas.toDataURL();
+      }
+      function makeGray() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+        for (var i = 0; i < data.length; i += 4) {
+          var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          data[i] = avg;
+          data[i + 1] = avg;
+          data[i + 2] = avg;
+        }
+        ctx.putImageData(imageData, 0, 0);
+        img.src = canvas.toDataURL();
+      }
+      function createThumbnail() {
+        var img = document.getElementById("image");
+        var canvas = document.createElement("canvas");
+        canvas.width = 100;
+        canvas.height = 100;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        var img2 = new Image();
+        img2.src = canvas.toDataURL();
+        document.body.appendChild(img2);
+      }
+    </script>
+  </body>
+</html>
