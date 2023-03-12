@@ -1,0 +1,25 @@
+#word-container {
+    font-size: 3em;
+    font-weight: bold;
+  }
+  
+  #input-container {
+    margin-top: 1em;
+  }
+  
+  #guess-input {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
+  
+  #submit-button {
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
+  
+  #message {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 1em;
+  }
+  
