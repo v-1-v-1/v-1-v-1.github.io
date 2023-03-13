@@ -1,0 +1,31 @@
+.photo-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -10px;
+}
+
+.photo-container img {
+	width: calc(100% - 20px);
+	margin: 10px;
+}
+
+/* Breakpoint 1 */
+@media screen and (min-width: 576px) and (max-width: 768px) {
+	.photo-container img {
+		width: calc(100% / 2 - 20px);
+	}
+}
+
+/* Breakpoint 2 */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+	.photo-container img {
+		width: calc(100% / 3 - 20px);
+	}
+}
+
+/* Breakpoint 3 */
+@media screen and (min-width: 992px) {
+	.photo-container img {
+		width: calc(100% / 4 - 20px);
+	}
+}
